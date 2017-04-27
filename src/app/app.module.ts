@@ -7,7 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { Details} from '../pages/details/details';
+import { AddContact} from '../pages/contact/add/add';
 import { ContactsService} from '../services/contacts.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -20,7 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     HomePage,
     TabsPage,
-    Details
+    AddContact
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     HomePage,
     TabsPage,
-    Details
+    AddContact
   ],
   providers: [
     StatusBar,

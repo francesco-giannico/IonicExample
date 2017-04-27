@@ -1,7 +1,9 @@
-export class ContactsService{
-    private contacts: { title: string}[]=[];
+import { Person } from "../app/models/person";
 
-    addContact(contact:{title:string}){
+export class ContactsService{
+    private contacts: Person[]=[];
+
+    addContact(contact:Person){
         this.contacts.push(contact);
     }
 
