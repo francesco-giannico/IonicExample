@@ -1,5 +1,11 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
+    <ion-buttons end>
+    <button ion-button icon-only (click)="onLoadNewContact()">
+         <ion-icon name="add"></ion-icon>
+    </button>
+
+    </ion-buttons>
     <ion-title>
       Contact
     </ion-title>
@@ -7,11 +13,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
-    </ion-item>
+  <ion-list inset>
+ 
+    <button ion-item *ngFor="let contact of contacts">
+       {{contact.title}}
+    </button>
+
   </ion-list>
+
+
+
+
+
 </ion-content>
