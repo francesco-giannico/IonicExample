@@ -5,6 +5,7 @@ import { ContactsService } from "../../services/contacts.service";
 import { Person } from "../../models/person";
 import { AddContact } from "./add/add";
 
+import { storage } from "../../storage/storage";
 
 
 @Component({
@@ -14,25 +15,19 @@ import { AddContact } from "./add/add";
 
 
 export class ContactPage {
+ private storage:storage;
   
  contacts:Person[]=[];
-  constructor(public navCtrl: NavController, private contactsService:ContactsService) {         
-      
+  constructor(storage:storage,public navCtrl: NavController, private contactsService:ContactsService) {         
+    this.storage=storage;
+    this.contacts= this.storage.getContacts();
   }
-
-
-
-  //get all the contact
-  ionViewWillEnter(){
-    this.contacts= this.contactsService.getContacts();
-  }
-
 
   //When you click on "+" button it open new window
   onLoadNewContact(){
     this.navCtrl.push(AddContact);
-    
   }
 
+  itemSelected(
  
 }

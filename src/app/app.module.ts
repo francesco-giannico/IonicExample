@@ -13,6 +13,7 @@ import { ContactsService} from '../services/contacts.service';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
+import { storage } from "../storage/storage";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ContactsService
+    ContactsService,
+    storage
   ]
 })
 export class AppModule {}

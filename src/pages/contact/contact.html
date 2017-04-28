@@ -15,9 +15,12 @@
 <ion-content>
   <ion-list inset>
  
-    <button ion-item *ngFor="let contact of contacts">
-       {{contact.name}}    
-       {{contact.surname}}
+    <button ion-item *ngFor="let contact of contacts" (click)="itemSelected(contact)">
+      <ion-avatar item-left>
+        <img src="http://immagini.insella.it/sites/default/files/anteprima/vespa_98-_1946.jpg">
+      </ion-avatar>
+      <h2> {{contact.name}}   {{contact.surname}} </h2>
+      
     </button>
 
   </ion-list>
