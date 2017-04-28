@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController} from 'ionic-angular';
 
 import { ContactsService } from "../../services/contacts.service";
-import { Person } from "../../app/models/person";
+import { Person } from "../../models/person";
 import { AddContact } from "./add/add";
 
 
@@ -14,18 +14,24 @@ import { AddContact } from "./add/add";
 
 
 export class ContactPage {
+  
  contacts:Person[]=[];
-  constructor(public navCtrl: NavController, private contactsService:ContactsService) {
-
+  constructor(public navCtrl: NavController, private contactsService:ContactsService) {         
+      
   }
 
-ionViewWillEnter(){
-  this.contacts= this.contactsService.getContacts();
 
-}
 
+  //get all the contact
+  ionViewWillEnter(){
+    this.contacts= this.contactsService.getContacts();
+  }
+
+
+  //When you click on "+" button it open new window
   onLoadNewContact(){
     this.navCtrl.push(AddContact);
+    
   }
 
  

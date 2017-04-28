@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController} from 'ionic-angular';
 
 import { ContactsService } from "../../../services/contacts.service";
-import { Person } from "../../../app/models/person";
+import { Person } from "../../../models/person";
 
 @IonicPage()
 @Component({
