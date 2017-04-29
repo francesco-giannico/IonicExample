@@ -15,13 +15,19 @@
 <ion-content>
   <ion-list inset>
  
-    <button ion-item *ngFor="let contact of contacts" (click)="itemSelected(contact)">
+    <ion-item *ngFor="let contact of contacts" >
       <ion-avatar item-left>
         <img src="http://immagini.insella.it/sites/default/files/anteprima/vespa_98-_1946.jpg">
-      </ion-avatar>
-      <h2> {{contact.name}}   {{contact.surname}} </h2>
+      </ion-avatar >
+      <button style="color:black" ion-button clear (click)="itemSelected(contact)"> {{contact.name}}   {{contact.surname}} </button>
+       <button style="color:grey" ion-button clear (click)="itemSelected(contact)" item-right icon-only>
+         <ion-icon name="chatbubbles"></ion-icon>
+       </button>
+       <button style="color:grey" ion-button clear (click)="view(contact)" item-right icon-only>
+         <ion-icon name="information-circle"></ion-icon>
+       </button>
       
-    </button>
+    </ion-item>
 
   </ion-list>
 

@@ -38,4 +38,7 @@ export class storage {
          return this.contacts;
    }
 
+  clear(){
+      this.storage.clear();
+  }
 }

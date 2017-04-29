@@ -1,9 +1,9 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      <ion-input [(ngModel)]="username" placeholder="Username"></ion-input>
+      {{username}} 
     </ion-title>
   </ion-navbar>
 
@@ -39,11 +39,13 @@
   <form #f="ngForm">
     <ion-grid>
       <ion-row>
-        <ion-col width-80>
+        <ion-col>
           <ion-input [(ngModel)]="chat" name="chatText" required placeholder="type here.."> </ion-input>
         </ion-col>
-        <ion-col width-20 center>
-          <button (click)="chatSend(f.value,f.valid)" ion-button color="light" full [disabled]="f.valid === false">send</button>
+        <ion-col >
+          <button style="float: right;" icon-only (click)="chatSend(f.value,f.valid)" ion-button  [disabled]="f.valid === false">
+            <ion-icon name="send"></ion-icon>
+          </button>
         </ion-col>
          </ion-row>
     </ion-grid>

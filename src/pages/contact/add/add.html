@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Add contact</ion-title>
   </ion-navbar>
 
@@ -14,9 +14,13 @@
       <ion-label>Name</ion-label>
       <ion-input type="text" name="name" ngModel required></ion-input>
     </ion-item>
- <ion-item>
+     <ion-item>
       <ion-label>Surname</ion-label>
       <ion-input type="text" name="surname" ngModel required></ion-input>
+    </ion-item>
+     <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="text" name="email" ngModel required></ion-input>
     </ion-item>
     <button ion-button block type="submit" [disabled]="!f.valid">Add</button>
   </form>

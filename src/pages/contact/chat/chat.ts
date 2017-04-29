@@ -25,9 +25,10 @@ export class Chat {
     this.socket.on("chat message", (msg) => {
       this.zone.run(()=> {
           this.messages.push(msg);
-          this.content.scrollToBottom();
+          //this.content.scrollToBottom();
       });
     });
+
  }
 
  chatSend(v){
@@ -39,7 +40,8 @@ export class Chat {
    this.chat= '';
  }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Chat');
+    this.username=this.navParams.get('name') + "  "+ this.navParams.get('surname');
+    
   }
 
 }
