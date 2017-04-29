@@ -2,6 +2,11 @@
 
 A simple app realized using Ionic Framework 2 by Francesco Giannico 
 
+
+
+## Requirements
+
+* `Download server from [here] https://github.com/frankgiak/IonicChatServer then run it digiting : "npm start" `
 ### What you can do
 
   1) Check your contact list

@@ -6,6 +6,7 @@ import { Person } from "../../models/person";
 import { AddContact } from "./add/add";
 
 import { storage } from "../../storage/storage";
+import { Chat } from "./chat/chat";
 
 
 @Component({
@@ -28,6 +29,8 @@ export class ContactPage {
     this.navCtrl.push(AddContact);
   }
 
-  itemSelected(
+  itemSelected(){
+    this.navCtrl.push(Chat);
+  }
  
 }

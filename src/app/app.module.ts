@@ -14,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import { storage } from "../storage/storage";
+import { Chat } from "../pages/contact/chat/chat";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { storage } from "../storage/storage";
     ContactPage,
     HomePage,
     TabsPage,
-    AddContact
+    AddContact,
+    Chat
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { storage } from "../storage/storage";
     ContactPage,
     HomePage,
     TabsPage,
-    AddContact
+    AddContact,
+    Chat
   ],
   providers: [
     StatusBar,
