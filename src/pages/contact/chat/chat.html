@@ -3,7 +3,7 @@
 
   <ion-navbar color="primary">
     <ion-title>
-      {{username}} 
+       {{receiver}} 
     </ion-title>
   </ion-navbar>
 
@@ -12,23 +12,14 @@
 
 <ion-content>
   <ion-list>
-    <div *ngFor="let data of messages">
-      <ion-item *ngIf="username === data.username" style="border-right: solid 5px red;">
+    <div *ngFor="let message of messages | async">
+      <ion-item>
         <p class="chat-text" item-left>
-          <strong> {{data.username}}: </strong>
-          {{data.message}}
+          <strong> {{message.sender}}: </strong>
+          {{message.text}}
         </p>
-        <p class="chat-time" item-right>
-          {{data.date | date:'dd/MM/yyyy'}}
-          </p>
-      </ion-item>
-      <ion-item *ngIf="username !== data.username" style="border-right: solid 5px green;">
-        <p class="chat-text" item-left>
-          <strong> {{data.username}}: </strong>
-          {{data.message}}
-        </p>
-        <p class="chat-time" item-right>
-          {{data.date | date:'dd/MM/yyyy'}}
+        <p  item-right>
+          {{message.date | date:'dd/MM/yyyy'}}
           </p>
       </ion-item>
       </div>
