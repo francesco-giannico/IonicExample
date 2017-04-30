@@ -6,7 +6,7 @@ A simple app realized using Ionic Framework 2 by Francesco Giannico
 
 ## Requirements
 
-* Download server from [here](https://github.com/frankgiak/IonicChatServer) then run it typing : "npm start" 
+* Internet connection to connect to Firebase
 ### What you can do
 
   1) Check your contact list
