@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 
@@ -8,6 +8,7 @@ import { AngularFire, FirebaseListObservable } from "angularfire2";
   selector: 'page-chat',
   templateUrl: 'chat.html',
 })
+
 export class Chat {
    private messages: FirebaseListObservable<any>;
    private receiver: string;
@@ -16,7 +17,7 @@ export class Chat {
   private chatId:string;
   private angFire: AngularFire;
   private contacts: FirebaseListObservable<any>;
-  
+
   constructor(public navCtrl: NavController, angFire: AngularFire, public navParams: NavParams) {
     this.angFire=angFire;
     this.chats= this.angFire.database.list('/Chats');
@@ -61,17 +62,16 @@ export class Chat {
         //altrimenti usi il chat id ottenuto dopo aver creato la chat per la prima volta
      this.messages= this.angFire.database.list('/Chats/'+this.chatId+'/messages');
       this.messages.push({
-            sender:"Antonio",
+            sender:"Francesco",
             text: message.chatText,
             date: this.myDate
         })
         
     }
  }
-
   ionViewDidLoad() {
    this.receiver=this.navParams.get('name') + "  "+ this.navParams.get('surname');
-    
+   
   }
 
 }
