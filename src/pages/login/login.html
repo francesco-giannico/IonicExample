@@ -22,7 +22,9 @@
       <ion-label>Password</ion-label>
       <ion-input type="password" name="password" ngModel required></ion-input>
     </ion-item>
-    <button ion-button round style="position: center" type="submit" [disabled]="!f.valid">Sign up</button>
+    <button ion-button  full round  type="submit" [disabled]="!f.valid">Sign in</button>
   </form>
 
+  <button ion-button full round  (click)="signUp(f.value)" [disabled]="!f.valid">Sign up</button>
+    <button ion-button full round  (click)="logout()">Logout</button>
 </ion-content>

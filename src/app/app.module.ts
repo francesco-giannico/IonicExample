@@ -7,6 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { Login} from '../pages/login/login';
 import { ContactsService} from '../services/contacts.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -15,8 +16,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { storage } from "../storage/storage";
 import { Chat } from "../pages/contact/chat/chat";
 import { Detail } from "../pages/contact/detail/detail";
-import { AngularFireModule } from 'angularfire2';
-import { Login } from "../pages/login/login";
+import { AngularFireModule } from  'angularfire2';
 
 export const firebaseConfig = {
    apiKey: "AIzaSyBZlxBE0diDUKCbL3_bhanTD33mcdk9CtQ",
@@ -34,9 +34,9 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     TabsPage,
+    Login,
     Chat,
-    Detail,
-    Login
+    Detail
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import {AuthProviders, AuthMethods,AngularFire} from 'angularfire2';
 /**
  * Generated class for the Login page.
@@ -15,7 +15,7 @@ import {AuthProviders, AuthMethods,AngularFire} from 'angularfire2';
 export class Login {
   email:string;
   password:string;
-  constructor(public angFire:AngularFire,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public alertCtrl: AlertController,public angFire:AngularFire,public navCtrl: NavController, public navParams: NavParams) {
     
 
  }
@@ -37,10 +37,22 @@ export class Login {
       window.localStorage.setItem('currentuser',JSON.stringify(currentuser));
       this.navCtrl.pop();
    }).catch((errors)=> {
-     console.log(errors);
+       let prompt= this.alertCtrl.create({
+        title:'Error',
+        message:errors.message
+       })
+       prompt.present();
    })
+  }
+  
+   signUp(credentials){
+    this.angFire.auth.createUser({
+        email: credentials.email,
+        password: credentials.password})
    }
-
+   logout(){
+     this.angFire.auth.logout();
+   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
   }
