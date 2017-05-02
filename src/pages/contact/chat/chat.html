@@ -11,16 +11,17 @@
 
 
 <ion-content>
-  <ion-list>
+  <ion-list no-lines>
     <div *ngFor="let message of messages | async">
       <ion-item>
         <p class="chat-text" item-left>
           <strong> {{message.sender}}: </strong>
-          {{message.text}}
-        </p>
-        <p  item-right>
-          {{message.date | date:'dd/MM/yyyy'}}
-          </p>
+          <span class="message-right">{{message.text}}  <p style="font-size: 50%; ">{{message.date | date:'dd/MM/yyyy h:MM:ss'}}</p>
+            
+       
+          </span>
+        
+       </p>
       </ion-item>
       </div>
   </ion-list>

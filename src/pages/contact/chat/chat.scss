@@ -1,3 +1,29 @@
 page-chat {
 
+    .message-left
+            {
+                display: inline-block;
+                max-width: 300px;
+                background-color: white;
+                padding: 5px;
+                border-radius: 10px;
+                position: relative;
+                border-width: 1px;
+                border-style: solid;
+                border-color: grey;
+            }
+    .message-right
+            {
+                display: inline-block;
+                max-width: 300px;
+                background-color: white;
+                padding: 5px;
+                border-radius: 10px;
+                position: relative;
+                border-width: 1px;
+                border-style: solid;
+                border-color: grey;
+                
+            }
+            
 }
