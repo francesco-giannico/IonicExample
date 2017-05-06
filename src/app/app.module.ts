@@ -16,7 +16,11 @@ import { IonicStorageModule } from '@ionic/storage';
 import { storage } from "../storage/storage";
 import { Chat } from "../pages/contact/chat/chat";
 import { Detail } from "../pages/contact/detail/detail";
-import { AngularFireModule } from  'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import { FileChooser } from "@ionic-native/file-chooser";
+import { FilePath } from "@ionic-native/file-path";
+import { File} from "@ionic-native/file";
+
 
 export const firebaseConfig = {
    apiKey: "AIzaSyBZlxBE0diDUKCbL3_bhanTD33mcdk9CtQ",
@@ -58,7 +62,7 @@ export const firebaseConfig = {
     TabsPage,
     Login,
     Chat,
-    Detail,
+    Detail
     
   ],
   providers: [
@@ -66,7 +70,10 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ContactsService,
-    storage
+    storage,
+    File,
+    FileChooser,
+    FilePath
   ]
 })
 export class AppModule {}
