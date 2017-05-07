@@ -32,6 +32,7 @@ export class Login {
   nativepath:any;
   imgsource:any;
 
+
   constructor(public zone: NgZone, private file: File,private fileChooser: FileChooser,private filePath: FilePath,public alertCtrl: AlertController,public angFire:AngularFire,public navCtrl: NavController, public navParams: NavParams) {
   /*this.firebasestore.ref().child('image.jpg').getDownloadURL().then(url =>{
       this.zone.run(()=>{
@@ -45,22 +46,16 @@ export class Login {
  login(credentials){
 
   this.firebaseauth.signInWithEmailAndPassword(credentials.email,credentials.password).then((response)=>{
-      alert('Login Success' + JSON.stringify(response));
-      //this.navCtrl.pop();
-      this.navCtrl.setRoot(TabsPage);
-      //aggiungi l'utente nel database 
-      var userId = this.firebaseauth.currentUser.uid;
-/*
-      this.firebaseauth.currentUser.updateProfile({
-         displayName: "Frankgiak",
-          photoURL: "https://example.com/jane-q-user/profile.jpg"
-      }).then(function() {
-          // Update successful.
-          alert("Update successful.");
-        }, function(error) {
-          // An error happened.
-           alert("Error"+ error);
-        });*/
+      if(this.firebaseauth.currentUser.emailVerified){
+        this.navCtrl.setRoot(TabsPage);
+      }
+      else{
+        let prompt= this.alertCtrl.create({
+          title:'Error',
+          message:"This email address is not verified"
+        })
+        prompt.present();
+      }
     }).catch((errors)=> {
        let prompt= this.alertCtrl.create({
         title:'Error',
@@ -71,7 +66,7 @@ export class Login {
   }
   
    signUp(){
- //this.navCtrl.push(AddContact);
+
     let prompt= this.alertCtrl.create({
       title:'Sign up', 
       inputs:[
@@ -106,7 +101,8 @@ export class Login {
         handler: data => {  
           this.firebaseauth.createUserWithEmailAndPassword(data.email, data.password)
             .then(()=>{
-               firebase.database().ref('users/'+firebase.auth().currentUser.uid).set({
+                this.firebaseauth.currentUser.sendEmailVerification().then(()=>{
+                       firebase.database().ref('users/'+firebase.auth().currentUser.uid).set({
                   name: data.name,
                   surname: data.surname,
                   email:data.email
@@ -117,13 +113,29 @@ export class Login {
                     })
                    prompt.present();
                 })
+
+
+                //update simple profile
+                 this.firebaseauth.currentUser.updateProfile({
+                    displayName: data.name+ " " + data.surname,
+                   photoURL: "empty"
+                  }).catch(function(error) {
+                       let prompt= this.alertCtrl.create({
+                            title:'Error',
+                            message:error.message
+                      })
+                      prompt.present();
+                    });
+
                let prompt= this.alertCtrl.create({
                     title:'Success',
-                    message:"Sign up success"
+                    message:"A confirmation email has been sent"
                 })
                 prompt.present();
-                this.navCtrl.setRoot(TabsPage);
+     })
+              
               }).catch((errors)=> {
+                //if the email address already exists
                   let prompt= this.alertCtrl.create({
                     title:'Error',
                     message:errors.message
@@ -136,4 +148,6 @@ export class Login {
   })
      prompt.present();            
    }
+
+
 }
