@@ -104,7 +104,8 @@ export class Login {
       {
         text: 'Sign up',
         handler: data => {  
-          this.firebaseauth.createUserWithEmailAndPassword(data.email, data.password).catch(function(error) {
+          this.firebaseauth.createUserWithEmailAndPassword(data.email, data.password)
+            .then(()=>{
                firebase.database().ref('users/'+firebase.auth().currentUser.uid).set({
                   name: data.name,
                   surname: data.surname,
@@ -113,27 +114,26 @@ export class Login {
                   let prompt= this.alertCtrl.create({
                     title:'Error',
                     message:errors.message
+                    })
+                   prompt.present();
                 })
-                 prompt.present();
-             })
-             let prompt= this.alertCtrl.create({
+               let prompt= this.alertCtrl.create({
                     title:'Success',
-                    message:"Sign up successfully!"
+                    message:"Sign up success"
                 })
-             prompt.present();
-          }).catch((errors)=> {
-              let prompt= this.alertCtrl.create({
-                title:'Error',
-                message:errors.message
-             })
-            prompt.present();
-          })
-      }
+                prompt.present();
+                this.navCtrl.setRoot(TabsPage);
+              }).catch((errors)=> {
+                  let prompt= this.alertCtrl.create({
+                    title:'Error',
+                    message:errors.message
+                    })
+                   prompt.present();
+                })
+         }
     }
-  ]
-    })
-     prompt.present();
-      
-              
+   ]
+  })
+     prompt.present();            
    }
 }
