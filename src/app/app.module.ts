@@ -20,6 +20,7 @@ import { AngularFireModule } from 'angularfire2';
 import { FileChooser } from "@ionic-native/file-chooser";
 import { FilePath } from "@ionic-native/file-path";
 import { File} from "@ionic-native/file";
+import { AddContact } from "../pages/contact/add/add";
 
 
 export const firebaseConfig = {
@@ -40,7 +41,8 @@ export const firebaseConfig = {
     TabsPage,
     Login,
     Chat,
-    Detail
+    Detail,
+    AddContact
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ export const firebaseConfig = {
     TabsPage,
     Login,
     Chat,
-    Detail
+    Detail,
+    AddContact
     
   ],
   providers: [

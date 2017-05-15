@@ -1,10 +1,6 @@
 import { Component, Inject, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { AngularFire} from 'angularfire2';
-import { File}  from '@ionic-native/file';
-import { FileChooser}  from '@ionic-native/file-chooser';
-import {  FilePath}  from '@ionic-native/file-path';
-
 import firebase from 'firebase';
 import { TabsPage } from "../tabs/tabs";
 
@@ -33,7 +29,7 @@ export class Login {
   imgsource:any;
 
 
-  constructor(public zone: NgZone, private file: File,private fileChooser: FileChooser,private filePath: FilePath,public alertCtrl: AlertController,public angFire:AngularFire,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public zone: NgZone,public alertCtrl: AlertController,public angFire:AngularFire,public navCtrl: NavController, public navParams: NavParams) {
   /*this.firebasestore.ref().child('image.jpg').getDownloadURL().then(url =>{
       this.zone.run(()=>{
         this.imgsource = url;
@@ -48,6 +44,9 @@ export class Login {
   this.firebaseauth.signInWithEmailAndPassword(credentials.email,credentials.password).then((response)=>{
       if(this.firebaseauth.currentUser.emailVerified){
         this.navCtrl.setRoot(TabsPage);
+         firebase.database().ref('contacts/'+firebase.auth().currentUser.uid).update({
+           "1":"empty"
+         })
       }
       else{
         let prompt= this.alertCtrl.create({
@@ -103,18 +102,17 @@ export class Login {
             .then(()=>{
                 this.firebaseauth.currentUser.sendEmailVerification().then(()=>{
                        firebase.database().ref('users/'+firebase.auth().currentUser.uid).set({
-                  name: data.name,
-                  surname: data.surname,
-                  email:data.email
-                }).catch((errors)=> {
-                  let prompt= this.alertCtrl.create({
-                    title:'Error',
-                    message:errors.message
-                    })
-                   prompt.present();
-                })
-
-
+                          name: data.name,
+                          surname: data.surname,
+                          email:data.email
+                        }).catch((errors)=> {
+                          let prompt= this.alertCtrl.create({
+                            title:'Error',
+                            message:errors.message
+                            })
+                          prompt.present();
+                        })
+            
                 //update simple profile
                  this.firebaseauth.currentUser.updateProfile({
                     displayName: data.name+ " " + data.surname,

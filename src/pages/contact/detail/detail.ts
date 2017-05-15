@@ -16,7 +16,7 @@ export class Detail {
   }
 
   ionViewDidLoad() {
-    this.contact= new Person(this.navParams.get('name'),this.navParams.get('surname'), this.navParams.get('email'));
+    this.contact= new Person(this.navParams.get('name'),this.navParams.get('surname'), this.navParams.get('email'),this.navParams.get('key'));
   
 }
 

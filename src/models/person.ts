@@ -2,11 +2,13 @@ export class Person{
     private name:string;
     private surname:string;
     private email:string;
+    private key: string;
 
-    constructor(name:string, surname:string, email:string){
+    constructor(key:string,name:string, surname:string, email:string){
             this.name=name;
             this.surname=surname;
             this.email=email;
+            this.key= key;
     }
 
     setName(name:string){
@@ -29,5 +31,9 @@ export class Person{
 
     getEmail():string{
         return this.email;
+    }
+
+     getKey():string{
+        return this.key;
     }
 }

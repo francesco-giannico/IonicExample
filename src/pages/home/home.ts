@@ -15,13 +15,11 @@ export class HomePage {
     currentUser:any = this.firebaseauth.currentUser;
 
   constructor(public navCtrl: NavController) {
-      console.log(this.currentUser.displayName);
+     console.log("current user: "+ this.currentUser.displayName);
   }
 
   logout(){
     this.firebaseauth.signOut();
-    this.navCtrl.setRoot(Login);
-  
   }
 
 }

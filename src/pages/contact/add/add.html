@@ -9,19 +9,19 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="onAddContact(f.value)" #f="ngForm">
-    <ion-item>
-      <ion-label>Name</ion-label>
-      <ion-input type="text" name="name" ngModel required></ion-input>
+  <ion-list inset >
+ 
+    <ion-item *ngFor="let contact of contacts">
+      <button style="color:black" ion-button clear (click)="itemSelected(contact)"> {{contact.name}}  {{contact.surname}}</button>
+       <button style="color:grey" ion-button clear (click)="itemSelected(contact)" item-right icon-only>
+         <ion-icon name="chatbubbles"></ion-icon>
+       </button>
+       <button style="color:grey" ion-button clear (click)="view(contact)" item-right icon-only>
+         <ion-icon name="information-circle"></ion-icon>
+       </button>
+      
     </ion-item>
-     <ion-item>
-      <ion-label>Surname</ion-label>
-      <ion-input type="text" name="surname" ngModel required></ion-input>
-    </ion-item>
-     <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input type="text" name="email" ngModel required></ion-input>
-    </ion-item>
-    <button ion-button block type="submit" [disabled]="!f.valid">Add</button>
-  </form>
+
+  </ion-list>
+
 </ion-content>

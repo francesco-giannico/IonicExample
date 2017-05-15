@@ -8,6 +8,7 @@ import { storage } from "../../storage/storage";
 import { Chat } from "./chat/chat";
 import { Detail } from "./detail/detail";
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import firebase from 'firebase';
 
 @Component({
   selector: 'page-contact',
@@ -16,74 +17,41 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 
 export class ContactPage {
- private persons: FirebaseListObservable<any>;
-// private storage:storage;
-  
- //contacts:Person[]=[];
-  constructor(public alertCtrl:AlertController, angFire: AngularFire, storage:storage,public navCtrl: NavController, private contactsService:ContactsService) {         
-   /* this.storage=storage;
-    this.storage.clear();
+ private firebaseauth= firebase.auth();
+ private firebasestore = firebase.storage();
+ private firebasedb = firebase.database();
+  contacts : Person[]=[];
+  constructor(public alertCtrl:AlertController,public navCtrl: NavController, private contactsService:ContactsService) {         
    
-    this.contacts= this.storage.getContacts();
-    this.contacts.push(new Person("francesco","giannico",'frankgiak@gmail.com'));*/
-  this.persons=  angFire.database.list('/Contacts');
-  angFire.database.list('/Contacts', { preserveSnapshot: true}).subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
+  }
 
-       //   console.log(snapshot.key, snapshot.val());
-        });
-    })
-    
-   
+  ionViewDidEnter(){
+    var contactsKeys : any[]=[];
+    var contacts : Person[]=[];
+     this.firebasedb.ref('contacts/'+ this.firebaseauth.currentUser.uid).once('value')
+        .then(
+         function(snapshot) {
+            snapshot.forEach(
+                function(childSnapshot) {
+                   firebase.database().ref('users/'+childSnapshot.key).once('value').then(
+                     function(snapshot){
+                           var person: Person = new Person(snapshot.key,snapshot.val().name,snapshot.val().surname,snapshot.val().email);
+                            contacts.push(person);
+                      }).catch((e)=>{
+                        console.log(e.message);
+                      })
+                  });
+                })
+           this.contacts=contacts;
   }
 
   //When you click on "+" button it open new window
   onLoadNewContact():void{
-    //this.navCtrl.push(AddContact);
-    let prompt= this.alertCtrl.create({
-      title:'Add contact',
-      message:'Enter the contact name , surname and e-mail', 
-      inputs:[
-        {
-          name:'name',
-          placeholder:"Contact name"
-        },
-        {
-          name:'surname',
-          placeholder:"Contact surname"
-        },
-        {
-          name:'email',
-          placeholder:"Contact email"
-        }
-      ],
-      buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      },
-      {
-        text: 'Add',
-        handler: data => {
-          this.persons.push({
-            name: data.name,
-            surname: data.surname,
-            email: data.email,
-            ChatId: 'empty'
-          })
-        }
-      }
-    ]
-    });
-    prompt.present();
+    this.navCtrl.push(AddContact);
   }
 
   itemSelected(contact){
     this.navCtrl.push(Chat,contact);
-    
   }
 
   view(contact:Person){
